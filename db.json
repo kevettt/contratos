@@ -1,0 +1,27 @@
+{
+  "productos": [
+    {
+      "id": "al6V927HlqoaKPRt_UOMT",
+      "nombre": "Sofa",
+      "medida": "unidad",
+      "stock": 12,
+      "precio": 12.6,
+      "categoria": {
+        "id": "jgdsgu823",
+        "nombre": "muebles"
+      }
+    },
+    {
+      "id": "iJCktUz5mAb7Vi_igZBff",
+      "nombre": "Sofa",
+      "medida": "unidad",
+      "stock": 12,
+      "precio": 12.6,
+      "categoria": {
+        "id": "jgdsgu823",
+        "nombre": "muebles"
+      }
+    }
+  ],
+  "categorias": []
+}
