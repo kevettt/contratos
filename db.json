@@ -21,7 +21,78 @@
         "id": "jgdsgu823",
         "nombre": "muebles"
       }
+    },
+    {
+      "id": "f8TRzq6_qJUpVKlMcN5aP",
+      "nombre": "Sofa",
+      "medida": "unidad",
+      "stock": 12,
+      "precio": 12.6,
+      "categoria": {
+        "id": "jgdsgu823",
+        "nombre": "muebles"
+      }
     }
   ],
-  "categorias": []
+  "categorias": [],
+  "ingresos": [
+    {
+      "id": "dGwJDH5gdDxXHcEp670-M",
+      "fecha": "20/07/2022",
+      "productos": [
+        {
+          "id": "iFN08safz-oI-Aj8TCcfdg",
+          "nombre": "mesa blanca",
+          "medida": "unidades",
+          "stock": 14,
+          "precio": 149,
+          "categoria": {
+            "id": "iFN08Ubz-oI-asfsb8B9f",
+            "nombre": "muebles"
+          }
+        },
+        {
+          "id": "iFN08safz-oI-AjddCcfdg",
+          "nombre": "silla blanca",
+          "medida": "unidades",
+          "stock": 17,
+          "precio": 49,
+          "categoria": {
+            "id": "iFN08Ubz-oI-asfsb8B9f",
+            "nombre": "muebles"
+          }
+        }
+      ],
+      "total": 198
+    },
+    {
+      "id": "oUv6_G3De7cC8pVn5tU13",
+      "fecha": "20/07/2022",
+      "productos": [
+        {
+          "id": "iFN08safz-oI-Aj8TCcfdg",
+          "nombre": "mesedora",
+          "medida": "unidades",
+          "stock": 11,
+          "precio": 379,
+          "categoria": {
+            "id": "iFN08Ubz-oI-asfsb8B9f",
+            "nombre": "muebles"
+          }
+        },
+        {
+          "id": "iFN08safz-oI-AjddCcfdg",
+          "nombre": "escritorio",
+          "medida": "unidades",
+          "stock": 10,
+          "precio": 276,
+          "categoria": {
+            "id": "iFN08Ubz-oI-asfsb8B9f",
+            "nombre": "muebles"
+          }
+        }
+      ],
+      "total": 198
+    }
+  ]
 }

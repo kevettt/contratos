@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createCategoria, deleteCategoria, getCategoria, getCategorias, updateCategoria } from '../controllers/categorias.controller'
+import { createIngreso, deleteIngreso, getIngreso, getIngresos, updateIngreso } from '../controllers/ingresos.controller'
 import { createProducto, deleteProducto, getProducto, getProductos, updateProducto } from '../controllers/productos.controller'
 
 
@@ -416,4 +417,236 @@ router.put('/productos/:id',updateProducto)
   */
  
  router.put('/categorias/:id',updateCategoria)
+
+
+ /**********************/
+/* PROMART HOMECENTER - INGRESOS*/
+/**********************/
+
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    Ingreso:
+ *      type: object
+ *      properties:
+ *        id:
+ *          type: string
+ *          description: es un id autogenerado
+ *        fecha:
+ *          type: string
+ *          description: fecha de ingreso
+ *        productos:
+ *          type: array
+ *          items:
+ *            $ref: '#/components/schemas/Producto'
+ *        total:
+ *          type: number
+ *          description: precio total de los productos ingresados
+ *      required:
+ *        - fecha
+ *        - productos
+ *        - total
+ *      example:
+ *        id: 08Ubz-oI-Aj8TCcPmV
+ *        fecha: 20/07/2022
+ *        productos: [
+ *          {
+ *            "id": "iFN08safz-oI-Aj8TCcfdg",
+ *            "nombre": "mesa blanca",
+ *            "medida": "unidades",
+ *            "stock": 14,
+ *            "precio": 149.00,
+ *            "categoria": {
+ *              "id": "iFN08Ubz-oI-asfsb8B9f",
+ *              "nombre": "muebles",
+ *            }
+ *          },
+ *          {
+ *            "id": "iFN08safz-oI-AjddCcfdg",
+ *            "nombre": "silla blanca",
+ *            "medida": "unidades",
+ *            "stock": 17,
+ *            "precio": 49.00,
+ *            "categoria": {
+ *              "id": "iFN08Ubz-oI-asfsb8B9f",
+ *              "nombre": "muebles",
+ *            }
+ *          },
+ *        ]
+ *        total: 198
+ *    IngresoNotFound:
+ *     type: object
+ *     properties:
+ *      sms:
+ *        type: string
+ *        description: un mensaje por si no existe el ingreso
+ *     example:
+ *        sms: no existe un ingreso con ese id
+ *    Ingresomsm:
+ *     type: object
+ *     properties:
+ *      sms:
+ *        type: string
+ *        description: un mensaje por si no existe el ingreso
+ *      data:
+ *        type: object
+ *        description: ingreso eliminado
+ *     example:
+ *      sms: no existe un ingreso con ese id
+ *      data: 
+ *  parameters:
+ *    ingresoId:
+ *      in: path
+ *      name: id
+ *      required: true
+ *      schema:
+ *        type: string
+ *      description: id del ingreso
+ */
+
+/**
+ * @swagger
+ * tags:
+ *  name: Ingresos
+ *  description: Ingresos endpoint
+ */
+
+
+/**
+ * @swagger
+ * /Ingresos:
+ *  get:
+ *    summary: La funcion retorna una lista de Ingresos
+ *    tags: [Ingresos]
+ *    responses:
+ *      200:
+ *        description: Optenemos una lista de Ingresos
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/Ingreso'
+ *              
+ */
+
+ router.get('/ingresos',getIngresos)
+
+ /**
+  * @swagger
+  * /ingresos:
+  *  post:
+  *    summary: La funcion registra un Ingreso
+  *    tags: [Ingresos]
+  *    requestBody:
+  *      required: true
+  *      content:
+  *        application/json:
+  *          schema:
+  *            $ref: '#/components/schemas/Ingreso'
+  *    responses:
+  *      200:
+  *        description: creamos un Ingreso
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/Ingreso'
+  *      500:
+  *        description: ocurrio algun error en el servidor
+  *              
+  */
+ 
+ router.post('/ingresos',createIngreso)
+ 
+ 
+ /**
+  * @swagger
+  * /ingresos/{id}:
+  *  get:
+  *    summary: La funcion retorna un ingreso
+  *    tags: [Ingresos]
+  *    parameters:
+  *      - $ref: '#/components/parameters/ingresoId'
+  *    responses:
+  *      200:
+  *        description: Optenemos un ingreso
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/Ingreso'
+  *      404:
+  *        description: No se encontro un ingreso con ese id
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/IngresoNotFound'
+  *                
+  *              
+  */
+ router.get('/ingresos/:id',getIngreso)
+ 
+ 
+ /**
+  * @swagger
+  * /ingresos/{id}:
+  *  delete:
+  *    summary: La funcion elimina un Ingreso
+  *    tags: [Ingresos]
+  *    parameters:
+  *      - $ref: '#/components/parameters/ingresoId'
+  *    responses:
+  *      200:
+  *        description: eliminamos un Ingreso
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/Ingresomsm'
+  *      404:
+  *        description: No se encontro un Ingreso con ese id
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/IngresoNotFound'
+  *                
+  *              
+  */
+ router.delete('/ingresos/:id',deleteIngreso)
+ 
+ 
+ /**
+  * @swagger
+  * /ingresos/{id}:
+  *  put:
+  *    summary: La funcion actualiza un ingreso
+  *    tags: [Ingresos]
+  *    parameters:
+  *      - $ref: '#/components/parameters/ingresoId'
+  *    requestBody:
+  *      required: true
+  *      content:
+  *        application/json:
+  *          schema:
+  *            $ref: '#/components/schemas/Ingreso'
+  *    responses:
+  *      200:
+  *        description: se actualizo el Ingreso
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/Ingresomsm'
+  *      404:
+  *        description: No se encontro un ingreso con ese id
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/IngresoNotFound'
+  *                
+  *              
+  */
+ 
+ router.put('/ingresos/:id',updateIngreso)
+
+
 export default router;
